@@ -1,0 +1,38 @@
+Atika szimulátor:
+	[Lehet egy kedv pörgető és a kedv ettől fog függni és a naphoz való hozzá áláása]
+	10% hogy nem jön be az iskolába
+		-Kellenek kifogások rndomizálni
+	90% hogybejön iskolába
+	-Beért az iskolába [Vagy órarend szerint megyünk vagy pedig random órarend szerint megyünk]
+		Kéne egy órarend nézés ahol eltudod dönteni hogy feloldod e a tiktok screen limitet
+			-Megiszik egy kávét vagy nem:
+				Ha nem akkor elős óra minimum skip ha nem a második is
+				Ha igen akkor első óra szabadprogram[tiktok]
+			
+	
+
+
+
+
+
+Órához való különlegességek:
+	Hálózat: Hazamennek előbb
+	Fizika: Óra végén szól hogy vége az órának(Pörög a tiktkok)
+	Magyaron telefonozik: Nincs munka(Megy a tiktok)
+
+
+Random napközbeni dolgok(10%-20%):	[Akár nap elején lehet egy spin hogy ma hány százalék esélye van hogy ilyenek lesznek mindegyiknek lesz egy nagyobb és egy kisebb esély faktora és nap elején eldől hogy melyik lesz melyiknél]
+	Felelés vagy dolgozat
+	Rossz kedv így nem csinál semmit
+	Lemerűl a telefonja (Akár rage game is lehet) [Ötlet: gombokat kell megnyomni egymás után ha nem jót nyomsz meg akkor visszább megy vagy újra kell kezdened és akár még time limit is lehet ha meglehet oldani]
+	Éhes lesz -> Elmegy büfébe(büfé game)
+
+
+Random napközbeni dolgok(30%-40%):	[.-.]
+
+	Barátokkal való találkozások:
+		Karollyal való beszélgetés
+		Csizmának egy bordába verés(5% esély hogy eltörik a bordája)
+		Davidot nyakonbassza
+		Beszol neki valaki[String list nevekkel](Attila válaszol neki a négy tanításával)
+		Túl sokat tankolt óra alatt(Víz) kikell mennie vízért a wc be ezért csapat verbúválást kell tartania(Lehet számtippelés mondjuk: [1- ig kell számot tippelni és amint eltalálja akkor elmennek annyian wc-re vízért])

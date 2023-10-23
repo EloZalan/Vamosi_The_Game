@@ -1,0 +1,26 @@
+Ki vagy ? = neved
+Delay minimum 3-15s random
+Kérdés feltevésnél vamosi nem elérhető (Do not disturb mode on)
+szókincs:
+	-Kurva anyád
+	-Kitérdekel
+	-Haljmeg
+	-Haljálmeg
+	-Ki kérdezett
+	-Kussoljál
+	
+Ha bele írod hogy ..... xd
+	-Válasz az hogy: hahaha nogyon vicces xd [szókincs + neved]
+	-Válasz az hogy: hahaha sírva nevetős fej xd [szókincs + neved]
+	-Ha nem kapja meg akkor pocket loss 100 -> Vissza kérdezés: Mivan ?
+Ha az a kérdés hogy mivan .....
+	-Válasz az hogy: anyád a .... [neved]
+
+Random kérdés:
+	-Hallod [neved]: [szókincs]
+	-Neked mikor lezs 42-es a bicepszed -> [válasz] -> nekem hidegen annyi
+Szkander:
+	Kérdések:
+		-Hallod [neved] már nyomod?
+		-Most nyomod?
+		-Már elkezdtük?
