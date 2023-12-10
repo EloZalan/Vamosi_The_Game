@@ -47,6 +47,7 @@ namespace Atika_simulator
             NagyLista.Add(TB8);
 
             NagyLista.Add(Bufe);
+            NagyLista.Add(MaradjOtthon);
 
             Random random = new Random();
             SzendvicsekSzama = random.Next(2, 5);
@@ -84,6 +85,7 @@ namespace Atika_simulator
         public static bool Annacska { get; set; } = true;
         public static bool NapElkezdese { get; set; } = true;
         public static int BentToltottOrak { get; set; } = 0;
+        public static bool JedlikbenVagy { get; set; } = false;
         public static int Viz { get; set; } = 100;
         public static int Ehes { get; set; } = 100;
         public static int Telefon { get; set; } = 100;
@@ -113,6 +115,12 @@ namespace Atika_simulator
             Console.WriteLine("╚═════╝░╚══════╝╚═╝╚═╝░░░░░╚═╝░╚═════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝");
             Thread.Sleep(5000);
             Console.Clear();
+        }
+        static void MaradjOtthon()
+        {
+            Console.WriteLine("\n\nAtikának rossz volt a közérzete így otthon maradt majd holnap megpróbálja újra");
+            Thread.Sleep(5000);
+            Environment.Exit(0);
         }
         static void Szomod()
         {
@@ -467,7 +475,7 @@ namespace Atika_simulator
         };
         public static int[,,] OrakIndex { get; set; } =
         {
-            {/*0 Szomod*/ {00, 1, 13, 14, 00, 00, 00, 00, 00, 00, 00 } },
+            {/*0 Szomod*/ {34, 1, 13, 14, 00, 00, 00, 00, 00, 00, 00 } },
             {/*1 Tata*/ {0, 2, 13, 14, 00, 00, 00, 00, 00, 00, 00 } },
             {/*2 Tatai vasútállomás*/ { 1, 3, 14, 00, 00, 00, 00, 00, 00, 00, 00 } },
             {/*3 Győri Vasútállomás*/ { 2, 4, 14, 00 ,00 ,00, 00, 00, 00, 00, 00 } },
@@ -482,6 +490,7 @@ namespace Atika_simulator
         };
         static void Valasztas(int melyikHely)
         {
+            Console.CursorVisible = false;
             int[] Hosszok = { 4, 4, 3, 3, 5, 6, 4, 10, 9, 11, 5, 6 , 2};
             Update();
             Console.Clear();
@@ -526,13 +535,34 @@ namespace Atika_simulator
                 if (a == ConsoleKey.Enter)
                 {
                     Random rnd = new Random();
-                    Viz -= rnd.Next(2, 6);
-                    Ehes -= rnd.Next(2, 6);
-                    Kedve -= rnd.Next(2, 4);
-                    Telefon -= rnd.Next(2, 4);
-                    NagyLista[OrakIndex[melyikHely,0,b]].Invoke();
-                    Console.Clear();
-                    Update();
+                    if (OrakIndex[melyikHely, 0, b] == 3 && BentToltottOrak > 6)
+                    {
+                        Viz -= rnd.Next(2, 6);
+                        Ehes -= rnd.Next(2, 6);
+                        Kedve -= rnd.Next(2, 4);
+                        Telefon -= rnd.Next(2, 4);
+                        NagyLista[OrakIndex[melyikHely,0,b]].Invoke();
+                        Console.Clear();
+                        Update();
+                    }
+                    else if (JedlikbenVagy == true && OrakIndex[melyikHely, 0, b] == 3 && BentToltottOrak < 7 )
+                    {
+                        Console.WriteLine($"Sajnos Atinak ma még bent kell maradnia {7 - BentToltottOrak} órát utánna mehet csak haza. :(");
+                        Thread.Sleep(2500);
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        if (OrakIndex[melyikHely, 0, b] == 4)
+                            JedlikbenVagy = true;
+                        Viz -= rnd.Next(2, 6);
+                        Ehes -= rnd.Next(2, 6);
+                        Kedve -= rnd.Next(2, 4);
+                        Telefon -= rnd.Next(2, 4);
+                        NagyLista[OrakIndex[melyikHely, 0, b]].Invoke();
+                        Console.Clear();
+                        Update();
+                    }
                 }
                 if (a == ConsoleKey.DownArrow) b++;
                 if (a == ConsoleKey.UpArrow) b--;
@@ -567,7 +597,9 @@ namespace Atika_simulator
                         Console.WriteLine($"   |_________________________________|");
                     } 
                 }
+                
             }
+
         }
         static void KondiGame()
         {
@@ -659,12 +691,12 @@ namespace Atika_simulator
             Console.CursorVisible = true;
             isCanceled = 1;
         
-
+            Thread.Sleep(300);
             Console.Clear();
             double maradekido = 10 - maradek / 1000;
             if (maradekido < 0)
             {
-                Console.WriteLine("Az időd lejárt Sajnos vesztettél atika így elveszít 20 kedv pontot :(");
+                Console.WriteLine("\n\n\tAz időd lejárt Sajnos vesztettél atika így elveszít 20 kedv pontot :(");
                 Kedve -= 20;
                 Ehes -= 15;
                 Viz -= 20;
@@ -672,11 +704,11 @@ namespace Atika_simulator
             }
             else
             {
-                Console.WriteLine("Gratulálunk!! Atikának sikerült ez a sett (+5 Kedv)");
+                Console.WriteLine("\n\n\tGratulálunk!! Atikának sikerült ez a sett (+5 Kedv)");
                 Kedve += 5;
                 Ehes -= 15;
                 Viz -= 20;
-                Console.WriteLine($"Ennyi időd maradt: {maradekido:f2}s");
+                Console.WriteLine($"\tEnnyi időd maradt: {maradekido:f2}s");
                 Update();
             }
             Thread.Sleep(5000);
@@ -687,7 +719,7 @@ namespace Atika_simulator
             AtikaEroKiiras();
             Console.WriteLine("\tHány kg szeretnél nyomni?\t (Ha atika nem tudja kinyomni akkor -20 kedv pontot fog kapni figyelj erre)\n\t\t\t\t\t(Alapvető minuszok: -15 víz és kaja potn )\n");
             Console.Write("  ====================================================================================================================\n  ");
-            Console.WriteLine("   _________________________________");
+            Console.WriteLine("  _________________________________");
             for (int i = 1; i < 10; i++)
             {
                 Console.Write($" {i}.|\t");
@@ -703,7 +735,12 @@ namespace Atika_simulator
                 valasztasod = Console.ReadKey(true).KeyChar;
             } 
             while (valasztasod > 57 || valasztasod <= 48);
-                return ((valasztasod - 48) * 2) + 10;
+            Console.Clear();
+            Console.WriteLine("\n\n\tA kinyomást a D és K billentyűzettel tudod csinálni. Nyomkodd őket amilyen gyorsan csak tudod!");
+            Thread.Sleep(5000);
+            return ((valasztasod - 48) * 2) + 10;
+
+
         }
 
 
